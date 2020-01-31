@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  background: #ffffe6;
+  height: 100vh;
 }
 
 .App-logo {
@@ -36,3 +38,45 @@
     transform: rotate(360deg);
   }
 }
+
+h1{
+  color:#804d00;
+}
+.user{
+  
+  background: orchid;
+  
+  
+}
+.form{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  background: #b36b00;
+  padding:5%;
+  width:40%;
+  margin-left:26%;
+  
+}
+
+.form:hover{
+  background: #331e00;
+  color: white;
+}
+.label{
+  margin:1.5%;
+  width: 35%;
+  
+}
+
+
+button:hover{
+  background: black;
+  color: white;
+
+}
+
+/* .field:hover{
+  color: red;
+} */
+

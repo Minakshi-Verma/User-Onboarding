@@ -18,10 +18,10 @@ const UserForm = ({values, errors, touched, status}) =>{
 
     return(
         <div>
-            <Form> 
-                <label htmlFor = "name">
-                  Name
-                  <Field
+            <Form class= "form"> 
+                <label class= "label" htmlFor = "name">
+                 Name
+                  <Field class = "field"
                   id = "name"
                   type = "text"
                   name = "name"
@@ -31,7 +31,7 @@ const UserForm = ({values, errors, touched, status}) =>{
                   )}
                 </label>
 
-                <label htmlFor = 'email'>
+                <label class= "label" htmlFor = 'email'>
                   Email
                   <Field
                    id = "email"
@@ -43,7 +43,7 @@ const UserForm = ({values, errors, touched, status}) =>{
                   )}
                 </label>
 
-                <label htmlFor = 'password'>
+                <label class= "label" htmlFor = 'password'>
                   Password
                   <Field
                    id = "password"
@@ -55,7 +55,7 @@ const UserForm = ({values, errors, touched, status}) =>{
                   )}
                 </label>
 
-                <label htmlFor = 'terms'>
+                <label class= "label" htmlFor = 'terms'>
                   Term of Service
                   <Field
                    id = "terms"
@@ -64,16 +64,16 @@ const UserForm = ({values, errors, touched, status}) =>{
                    checked ={values.terms}/>
                 </label>
 
-                <button>Submit</button>
+                <button type = "submit">Submit</button>
             </Form>
             {users.map(user =>{
                 return(
-                    <ul key = {user.id}>
-                        <li>Name:{user.name}</li>
-                        <li>Email:{user.email}</li>
-                        <li>Password: {user.password}</li>
-                        <li>terms: {user.terms}</li>
-                    </ul>
+                    <div class= "user" key = {user.id}>
+                        <p>Name:{user.name}</p>
+                        <p>Email:{user.email}</p>
+                        <p>Password: {user.password}</p>
+                        <p>terms: {user.terms}</p>
+                    </div>
                 )
             })}
         </div>
@@ -88,11 +88,30 @@ const FormikUserForm = withFormik({
         name: props.name || "",
         email: props.email || "",
         password: props.password || "",
-        terms: props.terms
+        terms: props.terms|| false
 
-    }
+    };
+ },
+ //validation
+ validationSchema: Yup.object().shape({
+  name: Yup.string().required("Name is required"),
+  
+  email: Yup.string().required("Email is required"),
+  password: Yup.string().required("Password is required")
+}),
+
+ //handleSubmit
+
+ handleSubmit(values, { setStatus, resetForm}){
+   axios
+   .post("https://reqres.in/api/users/", values)
+   .then(res =>{
+     setStatus(res.data);
+     resetForm()
+   })
+   .catch(err => console.log(err.response))
  }
 
-})
+})(UserForm)
 
 export default FormikUserForm;
