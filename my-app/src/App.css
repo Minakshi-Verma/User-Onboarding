@@ -44,10 +44,15 @@ h1{
 }
 .user{
   
-  background: orchid;
-  
+  background: #b36b00;
+  width:40%;
+  padding:5%;
+  margin:2% 0 0 26%;
+  border:black;
+  border-radius: 15px;
   
 }
+
 .form{
   display:flex;
   flex-direction:column;
@@ -56,6 +61,7 @@ h1{
   padding:5%;
   width:40%;
   margin-left:26%;
+  border-radius: 15px;
   
 }
 

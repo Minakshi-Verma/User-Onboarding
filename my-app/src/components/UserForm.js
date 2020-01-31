@@ -72,7 +72,7 @@ const UserForm = ({values, errors, touched, status}) =>{
                         <p>Name:{user.name}</p>
                         <p>Email:{user.email}</p>
                         <p>Password: {user.password}</p>
-                        <p>terms: {user.terms}</p>
+                        <p>Term of Service: {user.terms}</p>
                     </div>
                 )
             })}
@@ -97,7 +97,8 @@ const FormikUserForm = withFormik({
   name: Yup.string().required("Name is required"),
   
   email: Yup.string().required("Email is required"),
-  password: Yup.string().required("Password is required")
+  password: Yup.string().required("Password is required"),
+ 
 }),
 
  //handleSubmit
