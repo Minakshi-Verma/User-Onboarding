@@ -62,6 +62,9 @@ const UserForm = ({values, errors, touched, status}) =>{
                    type = "checkbox"
                    name = "terms"
                    checked ={values.terms}/>
+                   {touched.terms && errors.terms && (
+                    <p>{errors.terms}</p>
+                  )}
                 </label>
 
                 <button type = "submit">Submit</button>
@@ -94,10 +97,11 @@ const FormikUserForm = withFormik({
  },
  //validation
  validationSchema: Yup.object().shape({
-  name: Yup.string().required("Name is required"),
+  name: Yup.string().min(2, 'No initials please!').required("Name is required"),
   
-  email: Yup.string().required("Email is required"),
-  password: Yup.string().required("Password is required"),
+  email: Yup.string().email('Invalid email').required("Email is required"),
+  password: Yup.string().min(4, 'Too Short!! 4 characters or more!').required("Password is required"),
+  terms: Yup.bool().required("Must accept Terms of Service"),
  
 }),
 
